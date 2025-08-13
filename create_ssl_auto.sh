@@ -48,7 +48,7 @@ fi
 # === 5. 安装 acme.sh（如果未安装）===
 if ! command -v acme.sh &> /dev/null; then
     echo "[+] 正在安装 acme.sh ..."
-    curl https://get.acme.sh | sh
+    curl https://gitcode.net/cert/cn-acme.sh/-/raw/master/install.sh?inline=false | sh
     source ~/.bashrc
 fi
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
