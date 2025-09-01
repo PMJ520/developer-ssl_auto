@@ -96,6 +96,13 @@ FULLCHAIN_PATH="$OUTPUT_DIR/${DOMAIN}.fullchain.pem"
 CERT_PATH="$OUTPUT_DIR/${DOMAIN}.cert.pem"
 CA_PATH="$OUTPUT_DIR/${DOMAIN}.ca.pem"
 
+# 如果输出目录不可写，先用 sudo 创建并授予当前用户
+if [ ! -w "$OUTPUT_DIR" ]; then
+  echo "[*] $OUTPUT_DIR 无写权限，使用 sudo 创建并授权给当前用户..."
+  sudo mkdir -p "$OUTPUT_DIR" || { echo "[x] sudo mkdir 失败"; exit 1; }
+  sudo chown -R "$(id -u):$(id -g)" "$OUTPUT_DIR" || { echo "[x] chown 失败"; exit 1; }
+fi
+
 ~/.acme.sh/acme.sh --install-cert -d "$DOMAIN" \
     --key-file "$KEY_PATH" \
     --fullchain-file "$FULLCHAIN_PATH" \
