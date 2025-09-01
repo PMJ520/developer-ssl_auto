@@ -48,7 +48,10 @@ fi
 # === 5. 安装 acme.sh（如果未安装）===
 if [ ! -e ~/.acme.sh/acme.sh ]; then
     echo "[+] 正在安装 acme.sh ..."
-    wget https://raw.githubusercontent.com/PMJ520/developer-ssl_auto/refs/heads/main/acme.sh -O ~/.acme.sh/acme.sh
+    if [ ! -d "/path/to/directory" ]; then
+    sudo mkdir ~/.acme.sh 
+    fi
+    sudo wget https://raw.githubusercontent.com/PMJ520/developer-ssl_auto/refs/heads/main/acme.sh -O ~/.acme.sh/acme.sh
 fi
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
