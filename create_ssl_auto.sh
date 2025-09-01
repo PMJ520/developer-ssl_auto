@@ -52,6 +52,7 @@ if [ ! -e ~/.acme.sh/acme.sh ]; then
     sudo mkdir ~/.acme.sh 
     fi
     sudo wget https://raw.githubusercontent.com/PMJ520/developer-ssl_auto/refs/heads/main/acme.sh -O ~/.acme.sh/acme.sh
+    sudo chmod a+x ~/.acme.sh/acme.sh
 fi
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
