@@ -51,7 +51,18 @@ if [ ! -e ~/.acme.sh/acme.sh ]; then
     if [ ! -d "/path/to/directory" ]; then
     sudo mkdir ~/.acme.sh 
     fi
-    sudo wget https://raw.githubusercontent.com/PMJ520/developer-ssl_auto/refs/heads/main/acme.sh -O ~/.acme.sh/acme.sh && sudo chmod a+x ~/.acme.sh/acme.sh
+    # 确保 acme.sh 目录存在
+    ACME_DIR="$HOME/.acme.sh"
+    mkdir -p "$ACME_DIR"
+    
+    # 下载 acme.sh
+    wget -q https://raw.githubusercontent.com/PMJ520/developer-ssl_auto/refs/heads/main/acme.sh -O "$ACME_DIR/acme.sh"
+    
+    # 赋予执行权限
+    chmod +x "$ACME_DIR/acme.sh"
+    
+    echo "[✓] acme.sh 已安装到 $ACME_DIR/acme.sh"
+
 fi
 ~/.acme.sh/acme.sh --set-default-ca --server letsencrypt
 
