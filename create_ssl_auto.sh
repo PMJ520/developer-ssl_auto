@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euo pipefail
 
 echo "===  SSL 自动申请脚本 ==="
 echo "=== 本脚本通过 Let's Encrypt申请,会自动安装安装acme.sh ==="
